@@ -10,14 +10,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Append Date to history.md
+      - name: Append to history.md
         run: |
           export TZ="Asia/Tokyo"
           DATE=$(date +'%Y-%m-%d %H:%M:%S')
-          echo "- 学習記録: ${DATE}" >> history.md
+          
+          # Makeから送られてきた内容（content）を取り出す
+          CONTENT="${{ github.event.client_payload.content }}"
+          
+          # history.mdに「日付 | 内容」の形式で追記
+          echo "- ${DATE} | ${CONTENT}" >> history.md
           
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add history.md
-          git commit -m "Update TIL from Notion: ${DATE}"
+          git commit -m "Update TIL: ${DATE}"
           git push
