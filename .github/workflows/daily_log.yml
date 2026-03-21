@@ -1,0 +1,22 @@
+name: Daily TIL Log
+on:
+  repository_dispatch:
+    types: [notion_push]
+
+jobs:
+  log_update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Append Date to history.md
+        run: |
+          DATE=$(date +'%Y-%m-%d %H:%M:%S')
+          echo "- 学習記録: ${DATE}" >> history.md
+          
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add history.md
+          git commit -m "Update TIL from Notion: ${DATE}"
+          git push
