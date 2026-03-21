@@ -12,6 +12,7 @@ jobs:
       
       - name: Append Date to history.md
         run: |
+          export TZ="Asia/Tokyo"
           DATE=$(date +'%Y-%m-%d %H:%M:%S')
           echo "- 学習記録: ${DATE}" >> history.md
           
