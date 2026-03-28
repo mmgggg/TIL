@@ -14,15 +14,17 @@ jobs:
         run: |
           export TZ="Asia/Tokyo"
           DATE=$(date +'%Y-%m-%d %H:%M:%S')
-          
-          # Makeから送られてきた内容（content）を取り出す
           CONTENT="${{ github.event.client_payload.content }}"
           
-          # history.mdに「日付 | 内容」の形式で追記
+          # 最新の状態を取り込む設定を追加
+          git config user.name "mmgggg"
+          git config user.email "あなたのメールアドレス"
+          
+          # Pushする前に一度Pullして、変更を合流させる（ここが重要！）
+          git pull origin main --rebase
+          
           echo "- ${DATE} | ${CONTENT}" >> history.md
           
-          git config user.name "mmgggg"
-          git config user.email "roc9.ggg@gmail.com"
           git add history.md
           git commit -m "Update TIL: ${DATE}"
           git push
