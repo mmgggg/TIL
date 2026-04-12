@@ -18,7 +18,7 @@ jobs:
           
           # 最新の状態を取り込む設定を追加
           git config user.name "mmgggg"
-          git config user.email "あなたのメールアドレス"
+          git config user.email "roc9.ggg@gmai.com"
           
           # Pushする前に一度Pullして、変更を合流させる（ここが重要！）
           git pull origin main --rebase
