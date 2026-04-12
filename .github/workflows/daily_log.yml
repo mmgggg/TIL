@@ -37,7 +37,7 @@ jobs:
           # 1. ユーザー設定（ここがContributions反映に必須！）
           # メールアドレスが GitHub に登録されているものと一字一句違わないか確認してください
           git config --local user.name "mmgggg"
-          git config --local user.email "roc9.ggg@gmai.com"
+          git config --local user.email "roc9.ggg@gmail.com"
           
           # 2. 競合回避
           git pull origin main --rebase
